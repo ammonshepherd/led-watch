@@ -27,21 +27,23 @@
 */
 
 #include <Adafruit_NeoPixel.h>
-#include <Adafruit_GPS.h>
+//#include <Adafruit_GPS.h>
 
-#define GPSSerial Serial1
+//#define GPSSerial Serial1
 #define LED_PIN 6
 #define LED_COUNT 12
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
+/*
 Adafruit_GPS GPS(&GPSSerial);
 // Set to false to not send serial data
 #define GPSECHO true
 
 uint32_t timer = millis();
-
+*/
 void setup() {
+  /*
   Serial.begin(115200);
   Serial.println("LED Watch Code");
 
@@ -52,8 +54,10 @@ void setup() {
   GPS.sendCommand(PGCMD_ANTENNA);
   delay(1000);
   GPSSerial.println(PMTK_Q_RELEASE);
+*/
 
   // Start the LED ring off
+  Serial.begin(9600);
   strip.begin();
   strip.show();
   strip.setBrightness(3);
@@ -62,6 +66,7 @@ void setup() {
 }
 
 void loop() {
+  /*
   char c = GPS.read();
 
   // debug info, set above
@@ -99,56 +104,57 @@ void loop() {
   Serial.print("year: ");
   Serial.println(GPS.year, DEC);
 
-  //seconds(GPS.seconds);
-  
+  seconds(GPS.seconds);
+  */
+
+
   for (int s = 0; s < 60; s++) {
     seconds(s);
     delay(1000);
   }
-  
 
 }
 
 
 void seconds(int s) {
   // map the input 0-60 to 0-11, then constrain to be a whole number
-  Serial.print(s);
+  Serial.println(s);
   int led;
-  if ( s >= 0 and s < 6) {
+  if ( s >= 0 and s < 5) {
     Serial.println(" = zero - 5");
     led = 0;
   }
   if ( s > 4 and s < 10 ) {
     led = 1;
   }
-  if ( s > 9 and s < 16 ) {
+  if ( s > 9 and s < 15 ) {
     led = 2;
   }
-  if ( s > 15 and s < 21 ) {
+  if ( s > 14 and s < 20 ) {
     led = 3;
   }
-  if ( s > 20 and s < 26 ) {
+  if ( s > 19 and s < 25 ) {
     led = 4;
   }
-  if ( s > 25 and s < 31 ) {
+  if ( s > 24 and s < 30 ) {
     led = 5;
   }
-  if ( s > 30 and s < 36 ) {
+  if ( s > 29 and s < 35 ) {
     led = 6;
   }
-  if ( s > 35 and s < 41 ) {
+  if ( s > 34 and s < 40 ) {
     led = 7;
   }
-  if ( s > 40 and s < 46 ) {
+  if ( s > 39 and s < 45 ) {
     led = 8;
   }
-  if ( s > 45 and s < 51 ) {
+  if ( s > 44 and s < 50 ) {
     led = 9;
   }
-  if ( s > 50 and s < 56 ) {
+  if ( s > 49 and s < 55 ) {
     led = 10;
   }
-  if ( s > 55) {
+  if ( s > 54) {
     led = 11;
   }
   uint32_t color = strip.Color(0, 230, 0);
