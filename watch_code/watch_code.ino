@@ -105,7 +105,8 @@ void loop() {
     }
 
   }
-
+  
+  hours(GPS.hour);
   minutes(GPS.minute);
   seconds(GPS.seconds);
 
@@ -117,6 +118,50 @@ void loop() {
     }
   */
 
+}
+
+void hours(int h) {
+  int led;
+  if ( h >= 0 and h < 5) {
+    led = 0;
+  }
+  if ( h > 4 and h < 10 ) {
+    led = 1;
+  }
+  if ( h > 9 and h < 15 ) {
+    led = 2;
+  }
+  if ( h > 14 and h < 20 ) {
+    led = 3;
+  }
+  if ( h > 19 and h < 25 ) {
+    led = 4;
+  }
+  if ( h > 24 and h < 30 ) {
+    led = 5;
+  }
+  if ( h > 29 and h < 35 ) {
+    led = 6;
+  }
+  if ( h > 34 and h < 40 ) {
+    led = 7;
+  }
+  if ( h > 39 and h < 45 ) {
+    led = 8;
+  }
+  if ( h > 44 and h < 50 ) {
+    led = 9;
+  }
+  if ( h > 49 and h < 55 ) {
+    led = 10;
+  }
+  if ( h > 54) {
+    led = 11;
+  }
+
+  strip.clear();
+  strip.setPixelColor(led, HOURS_COLOR);
+  strip.show();
 }
 
 void minutes(int m) {
