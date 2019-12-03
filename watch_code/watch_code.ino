@@ -27,23 +27,27 @@
 */
 
 #include <Adafruit_NeoPixel.h>
-//#include <Adafruit_GPS.h>
+#include <Adafruit_GPS.h>
 
-//#define GPSSerial Serial1
+#define GPSSerial Serial1
 #define LED_PIN 6
 #define LED_COUNT 12
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
-/*
+uint32_t SECONDS_COLOR = strip.Color(0, 230, 0);
+uint32_t MINUTES_COLOR = strip.Color(230, 0, 0);
+uint32_t HOURS_COLOR = strip.Color(0, 0, 230);
+
+
 Adafruit_GPS GPS(&GPSSerial);
 // Set to false to not send serial data
 #define GPSECHO true
 
 uint32_t timer = millis();
-*/
+
 void setup() {
-  /*
+
   Serial.begin(115200);
   Serial.println("LED Watch Code");
 
@@ -54,10 +58,10 @@ void setup() {
   GPS.sendCommand(PGCMD_ANTENNA);
   delay(1000);
   GPSSerial.println(PMTK_Q_RELEASE);
-*/
+
 
   // Start the LED ring off
-  Serial.begin(9600);
+  //Serial.begin(9600);
   strip.begin();
   strip.show();
   strip.setBrightness(3);
@@ -66,7 +70,7 @@ void setup() {
 }
 
 void loop() {
-  /*
+
   char c = GPS.read();
 
   // debug info, set above
@@ -74,50 +78,95 @@ void loop() {
     if (c) {
       Serial.print(c);
     }
-  }
-  if (GPS.newNMEAreceived()) {
-    Serial.println(GPS.lastNMEA());
-    if (!GPS.parse(GPS.lastNMEA())) {
-      return;
+
+    Serial.print("hour: ");
+    Serial.println(GPS.hour, DEC);
+
+    Serial.print("minute: ");
+    Serial.println(GPS.minute, DEC);
+
+    Serial.print("second: ");
+    Serial.println(GPS.seconds, DEC);
+
+    Serial.print("day: ");
+    Serial.println(GPS.day, DEC);
+
+    Serial.print("month: ");
+    Serial.println(GPS.month, DEC);
+
+    Serial.print("year: ");
+    Serial.println(GPS.year, DEC);
+
+    if (GPS.newNMEAreceived()) {
+      Serial.println(GPS.lastNMEA());
+      if (!GPS.parse(GPS.lastNMEA())) {
+        return;
+      }
     }
+
   }
 
-  if (timer > millis() ) {
-    timer = millis();
-  }
-
-  Serial.print("hour: ");
-  Serial.println(GPS.hour, DEC);
-
-  Serial.print("minute: ");
-  Serial.println(GPS.minute, DEC);
-
-  Serial.print("second: ");
-  Serial.println(GPS.seconds, DEC);
-
-  Serial.print("day: ");
-  Serial.println(GPS.day, DEC);
-
-  Serial.print("month: ");
-  Serial.println(GPS.month, DEC);
-
-  Serial.print("year: ");
-  Serial.println(GPS.year, DEC);
-
+  minutes(GPS.minute);
   seconds(GPS.seconds);
+
+
+  /*
+    for (int s = 0; s < 60; s++) {
+      seconds(s);
+      delay(1000);
+    }
   */
-
-
-  for (int s = 0; s < 60; s++) {
-    seconds(s);
-    delay(1000);
-  }
 
 }
 
+void minutes(int m) {
+  Serial.println(m);
+  int led;
+  if ( m >= 0 and m < 5) {
+    Serial.println(" = zero - 5");
+    led = 0;
+  }
+  if ( m > 4 and m < 10 ) {
+    led = 1;
+  }
+  if ( m > 9 and m < 15 ) {
+    led = 2;
+  }
+  if ( m > 14 and m < 20 ) {
+    led = 3;
+  }
+  if ( m > 19 and m < 25 ) {
+    led = 4;
+  }
+  if ( m > 24 and m < 30 ) {
+    led = 5;
+  }
+  if ( m > 29 and m < 35 ) {
+    led = 6;
+  }
+  if ( m > 34 and m < 40 ) {
+    led = 7;
+  }
+  if ( m > 39 and m < 45 ) {
+    led = 8;
+  }
+  if ( m > 44 and m < 50 ) {
+    led = 9;
+  }
+  if ( m > 49 and m < 55 ) {
+    led = 10;
+  }
+  if ( m > 54) {
+    led = 11;
+  }
+
+  strip.clear();
+  strip.setPixelColor(led, MINUTES_COLOR);
+  strip.show();
+}
 
 void seconds(int s) {
-  // map the input 0-60 to 0-11, then constrain to be a whole number
+  // map the input 0-60 to 0-11, then constrain to be a whole number?
   Serial.println(s);
   int led;
   if ( s >= 0 and s < 5) {
@@ -157,8 +206,8 @@ void seconds(int s) {
   if ( s > 54) {
     led = 11;
   }
-  uint32_t color = strip.Color(0, 230, 0);
+
   strip.clear();
-  strip.setPixelColor(led, color);
+  strip.setPixelColor(led, SECONDS_COLOR);
   strip.show();
 }
