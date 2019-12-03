@@ -106,10 +106,11 @@ void loop() {
 
   }
   
-  hours(GPS.hour);
-  minutes(GPS.minute);
-  seconds(GPS.seconds);
 
+  show_time(GPS.hour, "hours");
+  show_time(GPS.minute, "minutes");
+  show_time(GPS.seconds, "seconds");
+  
 
   /*
     for (int s = 0; s < 60; s++) {
@@ -120,139 +121,54 @@ void loop() {
 
 }
 
-void hours(int h) {
+void show_time(int t, String color) {
   int led;
-  if ( h >= 0 and h < 5) {
+  if ( t >= 0 and t < 5) {
     led = 0;
   }
-  if ( h > 4 and h < 10 ) {
+  if ( t > 4 and t < 10 ) {
     led = 1;
   }
-  if ( h > 9 and h < 15 ) {
+  if ( t > 9 and t < 15 ) {
     led = 2;
   }
-  if ( h > 14 and h < 20 ) {
+  if ( t > 14 and t < 20 ) {
     led = 3;
   }
-  if ( h > 19 and h < 25 ) {
+  if ( t > 19 and t < 25 ) {
     led = 4;
   }
-  if ( h > 24 and h < 30 ) {
+  if ( t > 24 and t < 30 ) {
     led = 5;
   }
-  if ( h > 29 and h < 35 ) {
+  if ( t > 29 and t < 35 ) {
     led = 6;
   }
-  if ( h > 34 and h < 40 ) {
+  if ( t > 34 and t < 40 ) {
     led = 7;
   }
-  if ( h > 39 and h < 45 ) {
+  if ( t > 39 and t < 45 ) {
     led = 8;
   }
-  if ( h > 44 and h < 50 ) {
+  if ( t > 44 and t < 50 ) {
     led = 9;
   }
-  if ( h > 49 and h < 55 ) {
+  if ( t > 49 and t < 55 ) {
     led = 10;
   }
-  if ( h > 54) {
+  if ( t > 54) {
     led = 11;
   }
 
   strip.clear();
-  strip.setPixelColor(led, HOURS_COLOR);
-  strip.show();
-}
-
-void minutes(int m) {
-  Serial.println(m);
-  int led;
-  if ( m >= 0 and m < 5) {
-    Serial.println(" = zero - 5");
-    led = 0;
+  uint32_t display_color;
+  if (color == "hours") {
+    display_color = HOURS_COLOR;
+  } else if (color == "minutes") {
+    display_color = MINUTES_COLOR;
+  } else if (color == "seconds") {
+    display_color = SECONDS_COLOR;
   }
-  if ( m > 4 and m < 10 ) {
-    led = 1;
-  }
-  if ( m > 9 and m < 15 ) {
-    led = 2;
-  }
-  if ( m > 14 and m < 20 ) {
-    led = 3;
-  }
-  if ( m > 19 and m < 25 ) {
-    led = 4;
-  }
-  if ( m > 24 and m < 30 ) {
-    led = 5;
-  }
-  if ( m > 29 and m < 35 ) {
-    led = 6;
-  }
-  if ( m > 34 and m < 40 ) {
-    led = 7;
-  }
-  if ( m > 39 and m < 45 ) {
-    led = 8;
-  }
-  if ( m > 44 and m < 50 ) {
-    led = 9;
-  }
-  if ( m > 49 and m < 55 ) {
-    led = 10;
-  }
-  if ( m > 54) {
-    led = 11;
-  }
-
-  strip.clear();
-  strip.setPixelColor(led, MINUTES_COLOR);
-  strip.show();
-}
-
-void seconds(int s) {
-  // map the input 0-60 to 0-11, then constrain to be a whole number?
-  Serial.println(s);
-  int led;
-  if ( s >= 0 and s < 5) {
-    Serial.println(" = zero - 5");
-    led = 0;
-  }
-  if ( s > 4 and s < 10 ) {
-    led = 1;
-  }
-  if ( s > 9 and s < 15 ) {
-    led = 2;
-  }
-  if ( s > 14 and s < 20 ) {
-    led = 3;
-  }
-  if ( s > 19 and s < 25 ) {
-    led = 4;
-  }
-  if ( s > 24 and s < 30 ) {
-    led = 5;
-  }
-  if ( s > 29 and s < 35 ) {
-    led = 6;
-  }
-  if ( s > 34 and s < 40 ) {
-    led = 7;
-  }
-  if ( s > 39 and s < 45 ) {
-    led = 8;
-  }
-  if ( s > 44 and s < 50 ) {
-    led = 9;
-  }
-  if ( s > 49 and s < 55 ) {
-    led = 10;
-  }
-  if ( s > 54) {
-    led = 11;
-  }
-
-  strip.clear();
-  strip.setPixelColor(led, SECONDS_COLOR);
+  strip.setPixelColor(led, display_color);
   strip.show();
 }
