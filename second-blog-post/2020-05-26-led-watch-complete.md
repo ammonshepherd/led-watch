@@ -25,26 +25,26 @@ made designing the case very easy.
    needed. And a bonus were the many Fusion 360 tips and procedures that make
    any project I do going forward much better.
 
-![The many iterations of the case](/assets/post-media/led-watch-complete/iterations.jpg)
+![The many iterations of the case](./assets/post-media/led-watch-complete/iterations.jpg)
 *[The many iterations of the case]*
 
 Despite the model and the videos, the case took many, many iterations to get
 the present state. (Notice I didn't say finished state? More on that later.)
 
-![fusion 360](/assets/post-media/led-watch-complete/fusion360-watch-wireframe.png)
+![fusion 360](./assets/post-media/led-watch-complete/fusion360-watch-wireframe.png)
 *[fusion 360 - wireframe]*
 
-![fusion 360](/assets/post-media/led-watch-complete/fusion360-watch1.png)
+![fusion 360](./assets/post-media/led-watch-complete/fusion360-watch1.png)
 *[fusion 360 - watch model 1]*
 
-![fusion 360](/assets/post-media/led-watch-complete/fusion360-watch2.png)
+![fusion 360](./assets/post-media/led-watch-complete/fusion360-watch2.png)
 *[fusion 360 - watch model 2]*
 
 The lid was difficult to design for. My first idea was to have basically a flat disc that would twist into place and be held in with a couple of notches. This didn't work out well, as my tolerances between slots and tabs were too large and the lid was not stable when in place. 
 
 So, instead, I decided to use friction as the force to keep the lid on the case. I designed the case to have four shafts that fit over notches in the case. This provided a very tight fit.
 
-![Lid with tangs](/assets/post-media/led-watch-complete/white-black.jpg)
+![Lid with tangs](./assets/post-media/led-watch-complete/white-black.jpg)
 *[Lid with tangs]*
 
 One thing that is immediately noticeable (it was the first thing all of the kids said when they first saw it) is that the case is large! This is because the electronics inside are large. Adding a battery means the case is even larger because I had to increase the circumference to allow for the battery cables to plug into the Flora, and increase the height of the case as the battery sits under the Flora.
@@ -53,7 +53,7 @@ I had wanted the case to be more rounded, like one of those peppermint candy dis
 
 I was going to make a band out of leather, but I found one through Amazon while looking for ideas on how to attach the band to the case. It looked great and was cheap, so I went that route. The attachment part was easy to design for, but I had to keep in mind the limitations of the 3D printer, so everything had to be at a 45 degree angle and touching the bed.
 
-![Watch band](/assets/post-media/led-watch-complete/band.jpg)
+![Watch band](./assets/post-media/led-watch-complete/band.jpg)
 *[Watch band]*
 
 
@@ -63,13 +63,13 @@ the Fusion 360 file for your own remixing pleasure.
 
 ## The Code
 
-![The code](/assets/post-media/led-watch-complete/arduino-code.png)
+![The code](./assets/post-media/led-watch-complete/arduino-code.png)
 *[The code]*
 
 The code to make the watch work never really worked 100%. The watch relies on a GPS module to get accurate time from satellites. That in itself is really awesome, but the GPS module never seemed to get a good, consistent fix on any satellites. So if the watch does show the time, it's pretty iffy. I could try to code the time all from scratch, but since the GPS module is there, I wanted it to use the hour, minute and second from the GPS in order to tell the correct time. In order to get a good fix on the satellite, the GPS needs to be outside for 5-45 minutes. Every time I had scheduled to do this, it was freezing outside and I don't want to sit in the cold, so I give up after 5 minutes. It's much warmer now, so I'll have to give it another try.
 
 
-![Blinking Lights](/assets/post-media/led-watch-complete/vid2.gif)
+![Blinking Lights](./assets/post-media/led-watch-complete/vid2.gif)
 
 *[Blinking Lights]*
 
