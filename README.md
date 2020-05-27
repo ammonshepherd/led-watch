@@ -7,10 +7,9 @@ Here are two blog posts I wrote on the making of the watch.
 
 ## Blog Posts
 * [https://scholarslab.lib.virginia.edu/blog/led-watch-making/ ](https://scholarslab.lib.virginia.edu/blog/led-watch-making/)
-	* Or in this repo: [First Blog Post](/first-blog-post/)
-2019-12-17-making-an-led-watch.md
+	* Or in this repo: [First Blog Post](/first-blog-post/2019-12-17-making-an-led-watch.md)
 * [https://scholarslab.lib.virginia.edu/blog/ ](https://scholarslab.lib.virginia.edu/blog/)
-	* Or in this repo: [Second Blog Post](2020-05-26-led-watch-complete.md)
+	* Or in this repo: [Second Blog Post](/second-blog-post/2020-05-26-led-watch-complete.md)
 
 ## Hardware
 * NeoPixel Ring
